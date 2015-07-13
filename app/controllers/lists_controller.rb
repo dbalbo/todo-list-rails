@@ -20,10 +20,21 @@ class ListsController < ApplicationController
     else
       render :new
     end
+
+    def update
+      @list = List.find(params[:id])
+      if@list.update(list_params)
+        redirect_to lists_path
+      else
+        render :edit
+      end
+    end
+
+
   end
 
   private
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :description)
   end
 end
