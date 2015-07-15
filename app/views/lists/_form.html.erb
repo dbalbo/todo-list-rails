@@ -1,9 +1,10 @@
 <%= render 'layouts/errors', :object => @list  %>
 
 <%= form_for @list do |f| %>
+<div class='form-group'>
   <%= f.label :name  %>
   <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.submit %>
+
+</div>
+  <p><%= f.submit :class => "btn btn-primary" %></p>
 <% end %>

@@ -1,3 +1,10 @@
-<h1><%= @list.name %></h1>
+<% content_for(:title, "List | To Do") %>
 
-<p><%= link_to "Return to lists", lists_path %></p>
+<h1><%= @list.name %></h1>
+<p><%= link_to "Edit This Shit", edit_list_path(@list) %></p>
+<p><%= link_to "Delete List", list_path(@list),
+              :data => {:confirm => "Are you sure?",
+              :method => "delete"},
+              :class => "btn btn-danger" %></p>
+
+<p><%= link_to "Return to Lists", lists_path, :class => "btn btn-default" %></p>
