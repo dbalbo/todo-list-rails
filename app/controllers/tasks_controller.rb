@@ -32,7 +32,7 @@ class TasksController < ApplicationController
       end
 
       def destroy
-        @task Task.find(params[:id])
+        @task = Task.find(params[:id])
         @task.destroy
         flash[:notice] = "Task DESTROYED. Must.Get.BEERS!"
         redirect_to list_path(@task.list)
