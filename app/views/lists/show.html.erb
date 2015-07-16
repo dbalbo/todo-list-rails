@@ -1,10 +1,31 @@
 <% content_for(:title, "List | To Do") %>
 
 <h1><%= @list.name %></h1>
-<p><%= link_to "Edit This Shit", edit_list_path(@list) %></p>
+
+  <% if @list.tasks.any? %>
+    <h4> Here are the tasks for this list:</h4>
+
+    <ul>
+      <% @list.tasks.each do |task| %>
+        <li>
+          <%= task.description %> |
+          <%= link_to "Edit", edit_list_task_path(@list, task), :class =>"btn btn-primary" %> |
+          <%= link_to "Delete", list_task_path(@list, task),
+                        :data =>{:confirm => 'Are you sure?',
+                                  :method =>'delete'},
+                                  :class => "btn btn-danger" %>
+        </li>
+        <% end %>
+      <ul>
+    <% else %>
+        <p> There are no tasks, yet--no beers for you until you get your work done!"</p>
+    <% end %>
+
+
+<p><%= link_to "Add a Task", new_list_task_path(@list), :class => "btn btn-primary" %></p>
 <p><%= link_to "Delete List", list_path(@list),
               :data => {:confirm => "Are you sure?",
               :method => "delete"},
               :class => "btn btn-danger" %></p>
 
-<p><%= link_to "Return to Lists", lists_path, :class => "btn btn-default" %></p>
+<p><%= link_to "Return to Lists", lists_path, :class => "btn btn-primary" %></p>
